@@ -13,7 +13,6 @@ const readline = require('readline').createInterface({
   
 readline.question(`Please input an amount: `, amount => {
     amount = sanitizeInput(amount);
-console.log(amount)
     convertAmount(amount)
     readline.close()
 })
