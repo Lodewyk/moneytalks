@@ -1,5 +1,7 @@
 'use strict';
 
+const convertSingle = require(`./convertSingle`)
+
 /**
  * The readline constant as well as the `question` method were copied
  * from nodejs.dev - I was not certain what the best way would be to
@@ -18,7 +20,6 @@ readline.question(`Please input an amount: `, amount => {
 })
 /** copy paste ends here */
 
-const singles = [`zero`, `one`, `two`, `three`, `four`, `five`, `six`, `seven`, `eight`, `nine`]
 const doubleDigits = [`n/a`, `ten`, `twenty`, `thirty`, `fourty`, `fifty`, `sixty`, `seventy`, `eighty`, `ninety`]
 const tens = [`n/a`, `eleven`, `twelve`, `thirteen`, `fourteen`, `fifteen`, `sixteen`, `seventeen`, `eighteen`, `nineteen`]
 
@@ -143,9 +144,9 @@ function convertWhole(amount) {
  * 
  * @returns String
  */
-function convertSingle(digit) {
-    return singles[digit]
-}
+// function convertSingle(digit) {
+//     return singles[digit]
+// }
 
 /**
  * Converts double digits to english words
@@ -158,7 +159,7 @@ function convertSingle(digit) {
 function convertDoubleDigits(singles, tens) {
     let doubleDigits = ``
     if (typeof tens === `undefined` || tens === `0`) {
-        doubleDigits = convertSingle(singles)
+        doubleDigits = convertSingle.convertSingle(singles)
     } else {
         doubleDigits = convertTens(tens, singles)
     }
@@ -179,7 +180,7 @@ function convertTens(representsTens, representsOnes) {
     } else if (representsTens === `1`) {
         return tens[representsOnes]
     } else {
-        let single = convertSingle(representsOnes);
+        let single = convertSingle.convertSingle(representsOnes);
         let ten = doubleDigits[representsTens];
         return `${ten}-${single}`
     }
@@ -193,7 +194,5 @@ function convertTens(representsTens, representsOnes) {
  * @returns String
  */
 function convertHundreds(digit) {
-    return `${convertSingle(digit)} hundred`
+    return `${convertSingle.convertSingle(digit)} hundred`
 }
-
-module.exports = convertHundreds, convertTens
