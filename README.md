@@ -9,3 +9,5 @@
  0.80 will return zero dollards and eighty cents
   
  The result is printed out to the console.
+
+ No real validation yet, though the input string will have non-numerical characters (other than the decimal point) stripped out
