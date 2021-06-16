@@ -196,4 +196,4 @@ function convertHundreds(digit) {
     return `${convertSingle(digit)} hundred`
 }
 
-module.exports = convertHundreds
+module.exports = convertHundreds, convertTens
