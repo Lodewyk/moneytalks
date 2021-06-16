@@ -1,5 +1,5 @@
 const convertSingle = require(`./convertSingle`)
 
-test('one', () => {
+test(`one`, () => {
     expect(convertSingle.convertSingle(`1`)).toBe(`one`)
 })
