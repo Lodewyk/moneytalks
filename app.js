@@ -2,6 +2,7 @@
 
 const convertSingle = require(`./convertSingle`)
 const convertTens = require(`./convertTens`)
+const convertDoubleDigits = require(`./convertDoubleDigits`)
 const convertHundreds = require(`./convertHundreds`)
 
 /**
@@ -78,7 +79,7 @@ function convertAmount(amount) {
         deci += `0`;
     }
     const deciArray = deci.split(``).reverse()
-    let decimalString = convertDoubleDigits(deciArray[0], deciArray[1])
+    let decimalString = convertDoubleDigits.convertDoubleDigits(deciArray[0], deciArray[1])
     if (decimalString !== ``) {
         wholeString += ` and ${decimalString} cents`
     }
@@ -121,7 +122,7 @@ function checkAndConvertWhole(amount) {
  */
 function convertWhole(amount) {
     let wholeNumbers = amount.split(``).reverse()
-    let doubleDigits = convertDoubleDigits(wholeNumbers[0], wholeNumbers[1])
+    let doubleDigits = convertDoubleDigits.convertDoubleDigits(wholeNumbers[0], wholeNumbers[1])
 
     let hundreds = ``;
     if (typeof wholeNumbers[2] !== `undefined`) {
@@ -138,63 +139,3 @@ function convertWhole(amount) {
 
     return `${result} dollars`;
 }
-
-/**
- * Converts a single digit to an english word
- * 
- * @param String digit 
- * 
- * @returns String
- */
-// function convertSingle(digit) {
-//     return singles[digit]
-// }
-
-/**
- * Converts double digits to english words
- * 
- * @param String singles 
- * @param String tens 
- * 
- * @returns String
- */
-function convertDoubleDigits(singles, tens) {
-    let doubleDigits = ``
-    if (typeof tens === `undefined` || tens === `0`) {
-        doubleDigits = convertSingle.convertSingle(singles)
-    } else {
-        doubleDigits = convertTens.convertTens(tens, singles)
-    }
-    return doubleDigits
-}
-
-/**
- * Converts double digits up to 99 to english words
- * 
- * @param String representsTens represents 10s
- * @param String representsOnes represents single digits
- * 
- * @returns String
- */
-// function convertTens(representsTens, representsOnes) {
-//     if (representsOnes === `0`) {
-//         return doubleDigits[representsTens];
-//     } else if (representsTens === `1`) {
-//         return tens[representsOnes]
-//     } else {
-//         let single = convertSingle.convertSingle(representsOnes);
-//         let ten = doubleDigits[representsTens];
-//         return `${ten}-${single}`
-//     }
-// }
-
-/**
- * Converts triple digit characters (representing hundreds) to english words.
- * 
- * @param String digit 
- * 
- * @returns String
- */
-// function convertHundreds(digit) {
-//     return `${convertSingle.convertSingle(digit)} hundred`
-// }
