@@ -1,9 +1,7 @@
 'use strict';
 
-const convertSingle = require(`./convertSingle`)
-const convertTens = require(`./convertTens`)
+const convertWholeAmount = require(`./convertWholeAmount`)
 const convertDoubleDigits = require(`./convertDoubleDigits`)
-const convertHundreds = require(`./convertHundreds`)
 
 /**
  * The readline constant as well as the `question` method were copied
@@ -23,8 +21,8 @@ readline.question(`Please input an amount: `, amount => {
 })
 /** copy paste ends here */
 
+// @TODO figure out how to make this work as a global
 const doubleDigits = [`n/a`, `ten`, `twenty`, `thirty`, `fourty`, `fifty`, `sixty`, `seventy`, `eighty`, `ninety`]
-const tens = [`n/a`, `eleven`, `twelve`, `thirteen`, `fourteen`, `fifteen`, `sixteen`, `seventeen`, `eighteen`, `nineteen`]
 
 /**
  * Should return the input string with everything not numerical or `.` removed. Does not handle multiple decimals
@@ -65,7 +63,7 @@ function convertAmount(amount) {
     // recast whole as a string
     whole = `${whole}`
 
-    let wholeString = checkAndConvertWhole(whole)
+    let wholeString = convertWholeAmount.convertWholeAmount(whole)
     if (wholeString === false) {
         console.log(`Only whole numbers up to 1000 are supported.`)
         return
@@ -85,57 +83,4 @@ function convertAmount(amount) {
     }
 
     console.log(`${wholeString}`)
-}
-
-/**
- * Checks whether the entered amount is the lowest limit (0) or
- * highest limit (1000) and returns that value as a string. If neither
- * limit is detected the amount is passed to another function that
- * will convert it to english words
- * 
- * @param {*} amount 
- * 
- * @returns String
- */
-function checkAndConvertWhole(amount) {
-    if (amount === `0`) {
-        return `zero dollars`;
-    }
-
-    if (amount.length >= 4) {
-        if (amount === `1000`) {
-            return `one thousand dollars`
-        } else {
-            return false
-        }
-    }
-
-    return convertWhole(amount)
-}
-
-/**
- * Converts a whole number to english words
- * 
- * @param String amount 
- * 
- * @returns String
- */
-function convertWhole(amount) {
-    let wholeNumbers = amount.split(``).reverse()
-    let doubleDigits = convertDoubleDigits.convertDoubleDigits(wholeNumbers[0], wholeNumbers[1])
-
-    let hundreds = ``;
-    if (typeof wholeNumbers[2] !== `undefined`) {
-        hundreds = convertHundreds.convertHundreds(wholeNumbers[2])
-    }
-
-    let result = ``
-
-    if (hundreds !== `` && doubleDigits !== ``) {
-        result = `${hundreds} and ${doubleDigits}`
-    } else {
-        result = `${hundreds} ${doubleDigits}`.trim()
-    }
-
-    return `${result} dollars`;
 }
