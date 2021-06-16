@@ -1,6 +1,5 @@
+const constants = require(`./util/constants`)
 const convertSingle = require(`./convertSingle`)
-const doubleDigits = [`n/a`, `ten`, `twenty`, `thirty`, `fourty`, `fifty`, `sixty`, `seventy`, `eighty`, `ninety`]
-const tens = [`n/a`, `eleven`, `twelve`, `thirteen`, `fourteen`, `fifteen`, `sixteen`, `seventeen`, `eighteen`, `nineteen`]
 
 module.exports = {
     /**
@@ -13,12 +12,12 @@ module.exports = {
      */
     convertTens: function(representsTens, representsOnes) {
         if (representsOnes === `0`) {
-            return doubleDigits[representsTens];
+            return constants.doubleDigits[representsTens];
         } else if (representsTens === `1`) {
-            return tens[representsOnes]
+            return constants.tens[representsOnes]
         } else {
             let single = convertSingle.convertSingle(representsOnes);
-            let ten = doubleDigits[representsTens];
+            let ten = constants.doubleDigits[representsTens];
             return `${ten}-${single}`
         }
     }

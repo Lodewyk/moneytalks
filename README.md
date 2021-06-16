@@ -11,3 +11,8 @@
  The result is printed out to the console.
 
  No real validation yet, though the input string will have non-numerical characters (other than the decimal point) stripped out
+
+ Some rudimentary tests have been implemented. I've tried playing around with
+ mocking methods but haven't cracked it yet. Also haven't tested the methods in
+ app.js yet, which are perhaps the most important to test, though I've tested
+ most of the other parts of the code.

@@ -21,9 +21,6 @@ readline.question(`Please input an amount: `, amount => {
 })
 /** copy paste ends here */
 
-// @TODO figure out how to make this work as a global
-const doubleDigits = [`n/a`, `ten`, `twenty`, `thirty`, `fourty`, `fifty`, `sixty`, `seventy`, `eighty`, `ninety`]
-
 /**
  * Should return the input string with everything not numerical or `.` removed. Does not handle multiple decimals
  * Extra decimals will mean everything after the second decimal (including the decimal) is removed
