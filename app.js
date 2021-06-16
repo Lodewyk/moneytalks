@@ -1,6 +1,7 @@
 'use strict';
 
 const convertSingle = require(`./convertSingle`)
+const convertTens = require(`./convertTens`)
 const convertHundreds = require(`./convertHundreds`)
 
 /**
@@ -162,7 +163,7 @@ function convertDoubleDigits(singles, tens) {
     if (typeof tens === `undefined` || tens === `0`) {
         doubleDigits = convertSingle.convertSingle(singles)
     } else {
-        doubleDigits = convertTens(tens, singles)
+        doubleDigits = convertTens.convertTens(tens, singles)
     }
     return doubleDigits
 }
@@ -175,17 +176,17 @@ function convertDoubleDigits(singles, tens) {
  * 
  * @returns String
  */
-function convertTens(representsTens, representsOnes) {
-    if (representsOnes === `0`) {
-        return doubleDigits[representsTens];
-    } else if (representsTens === `1`) {
-        return tens[representsOnes]
-    } else {
-        let single = convertSingle.convertSingle(representsOnes);
-        let ten = doubleDigits[representsTens];
-        return `${ten}-${single}`
-    }
-}
+// function convertTens(representsTens, representsOnes) {
+//     if (representsOnes === `0`) {
+//         return doubleDigits[representsTens];
+//     } else if (representsTens === `1`) {
+//         return tens[representsOnes]
+//     } else {
+//         let single = convertSingle.convertSingle(representsOnes);
+//         let ten = doubleDigits[representsTens];
+//         return `${ten}-${single}`
+//     }
+// }
 
 /**
  * Converts triple digit characters (representing hundreds) to english words.
