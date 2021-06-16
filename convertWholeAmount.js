@@ -26,6 +26,25 @@ module.exports = {
         }
     
         return convertAfterChecks(amount)
+    },
+    convertAfterChecks: function(amount) {
+        let wholeNumbers = amount.split(``).reverse()
+        let doubleDigits = convertDoubleDigits.convertDoubleDigits(wholeNumbers[0], wholeNumbers[1])
+    
+        let hundreds = ``;
+        if (typeof wholeNumbers[2] !== `undefined`) {
+            hundreds = convertHundreds.convertHundreds(wholeNumbers[2])
+        }
+    
+        let result = ``
+    
+        if (hundreds !== `` && doubleDigits !== ``) {
+            result = `${hundreds} and ${doubleDigits}`
+        } else {
+            result = `${hundreds} ${doubleDigits}`.trim()
+        }
+    
+        return `${result} dollars`;
     }
 }
 
@@ -36,22 +55,22 @@ module.exports = {
  * 
  * @returns String
  */
- function convertAfterChecks(amount) {
-    let wholeNumbers = amount.split(``).reverse()
-    let doubleDigits = convertDoubleDigits.convertDoubleDigits(wholeNumbers[0], wholeNumbers[1])
+//  function convertAfterChecks(amount) {
+//     let wholeNumbers = amount.split(``).reverse()
+//     let doubleDigits = convertDoubleDigits.convertDoubleDigits(wholeNumbers[0], wholeNumbers[1])
 
-    let hundreds = ``;
-    if (typeof wholeNumbers[2] !== `undefined`) {
-        hundreds = convertHundreds.convertHundreds(wholeNumbers[2])
-    }
+//     let hundreds = ``;
+//     if (typeof wholeNumbers[2] !== `undefined`) {
+//         hundreds = convertHundreds.convertHundreds(wholeNumbers[2])
+//     }
 
-    let result = ``
+//     let result = ``
 
-    if (hundreds !== `` && doubleDigits !== ``) {
-        result = `${hundreds} and ${doubleDigits}`
-    } else {
-        result = `${hundreds} ${doubleDigits}`.trim()
-    }
+//     if (hundreds !== `` && doubleDigits !== ``) {
+//         result = `${hundreds} and ${doubleDigits}`
+//     } else {
+//         result = `${hundreds} ${doubleDigits}`.trim()
+//     }
 
-    return `${result} dollars`;
-}
+//     return `${result} dollars`;
+// }
