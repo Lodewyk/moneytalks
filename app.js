@@ -1,6 +1,7 @@
 'use strict';
 
 const convertSingle = require(`./convertSingle`)
+const convertHundreds = require(`./convertHundreds`)
 
 /**
  * The readline constant as well as the `question` method were copied
@@ -123,7 +124,7 @@ function convertWhole(amount) {
 
     let hundreds = ``;
     if (typeof wholeNumbers[2] !== `undefined`) {
-        hundreds = convertHundreds(wholeNumbers[2])
+        hundreds = convertHundreds.convertHundreds(wholeNumbers[2])
     }
 
     let result = ``
@@ -193,6 +194,6 @@ function convertTens(representsTens, representsOnes) {
  * 
  * @returns String
  */
-function convertHundreds(digit) {
-    return `${convertSingle.convertSingle(digit)} hundred`
-}
+// function convertHundreds(digit) {
+//     return `${convertSingle.convertSingle(digit)} hundred`
+// }
