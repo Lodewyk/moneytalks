@@ -12,6 +12,8 @@ const readline = require('readline').createInterface({
 })
   
 readline.question(`Please input an amount: `, amount => {
+    amount = sanitizeInput(amount);
+console.log(amount)
     convertAmount(amount)
     readline.close()
 })
@@ -20,6 +22,18 @@ readline.question(`Please input an amount: `, amount => {
 const singles = [`zero`, `one`, `two`, `three`, `four`, `five`, `six`, `seven`, `eight`, `nine`]
 const doubleDigits = [`n/a`, `ten`, `twenty`, `thirty`, `fourty`, `fifty`, `sixty`, `seventy`, `eighty`, `ninety`]
 const tens = [`n/a`, `eleven`, `twelve`, `thirteen`, `fourteen`, `fifteen`, `sixteen`, `seventeen`, `eighteen`, `nineteen`]
+
+/**
+ * Should return the input string with everything not numerical or `.` removed. Does not handle multiple decimals
+ * Extra decimals will mean everything after the second decimal (including the decimal) is removed
+ * 
+ * @param String input 
+ * 
+ * @returns 
+ */
+function sanitizeInput(input) {
+    return input.replace(/[^0-9\.]/g,'');
+}
 
 /**
  * This will not handle negative amounts, and will only accept `.` as the decimal character
