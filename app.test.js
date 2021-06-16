@@ -1,4 +1,4 @@
-import convertHundreds from `./app`
+const convertHundreds = require(`./app`)
 
 test('convertHundreds one', () => {
     expect(convertHundreds(`1`)).toBe(`one hundred`)
