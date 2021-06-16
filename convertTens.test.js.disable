@@ -1,0 +1,13 @@
+const convertTens = require(`./app`)
+
+test('ten', () => {
+    expect(convertTens(`1`, `0`)).toBe(`ten`)
+})
+
+test('eleven', () => {
+    expect(convertTens(`1`, `1`)).toBe(`eleven`)
+})
+
+test('eighteen', () => {
+    expect(convertTens(`1`, `8`)).toBe(`eighteen`)
+})

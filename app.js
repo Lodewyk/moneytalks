@@ -173,7 +173,7 @@ function convertDoubleDigits(singles, tens) {
  * 
  * @returns String
  */
-function convertTens(representsTens, representsOnes) {
+export function convertTens(representsTens, representsOnes) {
     if (representsOnes === `0`) {
         return doubleDigits[representsTens];
     } else if (representsTens === `1`) {
@@ -192,7 +192,7 @@ function convertTens(representsTens, representsOnes) {
  * 
  * @returns String
  */
-function convertHundreds(digit) {
+export function convertHundreds(digit) {
     return `${convertSingle(digit)} hundred`
 }
 
@@ -203,4 +203,8 @@ function convertHundreds(digit) {
 // module.exports = convertSingle
 // module.exports = convertDoubleDigits
 // module.exports = convertTens
-module.exports = convertHundreds
+// module.exports = convertHundreds
+module.exports = {
+    convertTens: convertTens,
+    convertHundreds: convertHundreds
+}
