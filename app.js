@@ -196,4 +196,11 @@ function convertHundreds(digit) {
     return `${convertSingle(digit)} hundred`
 }
 
+// module.exports = sanitizeInput
+// module.exports = convertAmount
+// module.exports = checkAndConvertWhole
+// module.exports = convertWhole
+// module.exports = convertSingle
+// module.exports = convertDoubleDigits
+// module.exports = convertTens
 module.exports = convertHundreds

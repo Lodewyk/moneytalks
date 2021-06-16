@@ -8,5 +8,8 @@
   },
   "scripts": {
     "test": "jest"
+  },
+  "devDependencies": {
+    "jest-cli": "^27.0.4"
   }
 }
